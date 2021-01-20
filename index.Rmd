@@ -1,19 +1,18 @@
 ---
-title: "Ouija Seeto Jainese"
-image: "ouija.jpg"
+title: "Katelin Seeto"
+image: "ks_perch_2mp.jpg"
 links:
   - label: LinkedIn
     url: "https://linkedin.com/"
-  - label: Twitter
-    url: "https://twitter.com/"
   - label: GitHub
-    url: "https://github.com/"
+    url: "https://github.com/katelinseeto"
   - label: Email
-    url: "mailto:email@email.com"
+    url: "mailto:katelinseeto@ucsb.edu"
 output:
   postcards::jolla
 site: distill::distill_website
 ---
  
-I am a classically trained string catcher living in the Santa Barbara Area. 
-Currently I work on the human supervisory team at Zoomies Corp. I love drinking from the tub faucet, stalking moths, and summoning demons when I clean my butt.
+I am a classically trained data scientist living in the San Francisco Bay Area. 
+Currently I work on the Oculus team at Facebook. I love talking about baseball, 
+true crime podcasts, and causal inference.
