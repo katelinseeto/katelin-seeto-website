@@ -1,6 +1,6 @@
 ---
 title: "Katelin Seeto"
-image: "ks_perch_2mp.jpg"
+image: "ks_perch_2mp.JPG"
 links:
   - label: LinkedIn
     url: "https://linkedin.com/"
@@ -13,6 +13,4 @@ output:
 site: distill::distill_website
 ---
  
-I am a classically trained data scientist living in the San Francisco Bay Area. 
-Currently I work on the Oculus team at Facebook. I love talking about baseball, 
-true crime podcasts, and causal inference.
+I am a second year M.S student in the Interdepartmental Graduate Program in Marine Science at UCSB.
