@@ -7,6 +7,9 @@ navbar:
   right:
     - text: "Home"
       href: index.html
-    - text: "About"
-      href: about.html
+    - text: "About Me"
+      href: about_me.html
+    - text: "CV"
+      href: cv/cv.html
+
 output: distill::distill_article
