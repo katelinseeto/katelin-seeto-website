@@ -2,15 +2,16 @@
 title: "Katelin Seeto"
 image: "ks_perch_2mp.JPG"
 links:
-  - label: LinkedIn
-    url: "https://linkedin.com/"
+  - label: ORCID
+    url: "https://orcid.org/0000-0002-1223-3288"
   - label: GitHub
     url: "https://github.com/katelinseeto"
   - label: Email
     url: "mailto:katelinseeto@ucsb.edu"
+    
 output:
   postcards::jolla
 site: distill::distill_website
 ---
  
-I am a second year M.S student in the Interdepartmental Graduate Program in Marine Science at UCSB.
+I am a second year M.S student in the Interdepartmental Graduate Program in Marine Science at UCSB. 
