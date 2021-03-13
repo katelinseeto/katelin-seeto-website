@@ -1,0 +1,122 @@
+---
+title: "Animated Bar Graph: Plastic Pollution"
+description: |
+  Create an animated plot with `gganimate` using Tidy Tuesday data 
+author:
+  - name: Katelin Seeto
+    url: {}
+date: 03-12-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: code
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidytuesdayR) 
+library(tidyverse)
+library(janitor)
+library(ggplot2)
+library(RColorBrewer)
+library(gganimate)
+library(gifski)
+library(tools)
+library(forcats)
+```
+
+#### Read in plastics data 
+```{r}
+tuesdata <- tidytuesdayR::tt_load(2021, week = 5)
+
+plastics <- tuesdata$plastics
+
+```
+
+#### Clean and wrangle 
+```{r}
+# Wrangling
+plastics <- plastics %>% 
+    clean_names() %>% 
+  mutate(across(where(is.character), tolower),
+         year = as.factor(year)) %>% 
+  filter(!country == "empty")
+
+# Countries participated in 2019
+plastics_2019<-plastics%>%
+  filter(year == 2019)%>%
+  group_by(country)%>%
+  summarize(total_2019 = sum(grand_total))%>%
+  na.omit() 
+  
+# Countries participated in 2020
+plastics_2020<-plastics%>%
+  filter(year == 2020)%>%
+  group_by(country)%>%
+  summarize(total_2020 = sum(grand_total))%>%
+  na.omit() 
+
+# Combine and only keep countries that participated in both years
+
+plastics_joined <- right_join(plastics_2019, plastics_2020, by = "country") %>% 
+   na.omit()%>% 
+  pivot_longer(!country, 
+               names_to = "year", 
+               names_prefix = "total_",
+               values_to = "total_plastic") %>% 
+  mutate(year = as.factor(year),
+         country = toTitleCase(country)) %>% 
+  group_by(year) %>% 
+  mutate(rank = as.factor(rank(desc(total_plastic)))) %>% 
+  filter(rank %in% c("1":"10"))
+  
+
+
+```
+
+#### gganimate change in rank by year
+
+```{r echo=FALSE}
+num_colors <- 13 #define number of colors based on countries 
+mycolors <- colorRampPalette(brewer.pal(8, "Set3"))(num_colors)
+
+
+top_10_yr<- ggplot(plastics_joined)+
+  geom_col(aes(x = fct_rev(rank), 
+               y = total_plastic,
+               group = country, 
+               fill = country))+ 
+  geom_text(aes(x = rank, y = 0, 
+                label = country,
+                group = country),
+            hjust = 1.25, 
+            size = 4.5)+
+  theme_minimal()+
+  theme(axis.title.y = element_blank(), 
+        axis.text.y = element_blank(),
+        axis.title.x = element_text(size = 14),
+        plot.title = element_text(size = 18, face = "bold"),
+        plot.subtitle = element_text(size = 14),
+        plot.margin = margin(4,1,1,90))+
+  labs(y = "Total count of all plastics",
+       title = '{closest_state}',
+       subtitle = "Top 10 countries by year with highest total plastic count", 
+       caption = "Data Source: Break Free from Plastic courtesy of Sarah Sauve. #breakfreefromplastic",
+       fill = "Country")+
+  scale_fill_manual(values = mycolors)+
+  coord_flip(clip = "off")+
+  transition_states(year, 
+                    transition_length = 2, 
+                    state_length = 2)+
+  exit_fly(x_loc = 0, y_loc = 0) +      
+  enter_fly(x_loc = 0, y_loc = 0)
+
+top_10_yr
+
+# anim_save("task3_anim_plot.gif", top_10_yr)
+
+```
+
+

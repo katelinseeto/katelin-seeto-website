@@ -2,8 +2,10 @@
 title: "About Katelin Seeto"
 description: More about me
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+### Experience 
+
+While completing her undergradate education at University of California, Santa Barbara (UCSB), I 

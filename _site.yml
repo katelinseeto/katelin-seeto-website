@@ -1,5 +1,6 @@
 name: "."
 title: "Katelin Seeto"
+theme: postcards.css
 description: |
   Katelin Seeto
 output_dir: "docs"
@@ -9,6 +10,8 @@ navbar:
       href: index.html
     - text: "About Me"
       href: about_me.html
+    - text: "Projects"
+      href: project.html
     - text: "CV"
       href: cv/cv.html
 

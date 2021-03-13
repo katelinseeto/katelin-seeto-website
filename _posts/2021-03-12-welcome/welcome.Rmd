@@ -1,0 +1,22 @@
+---
+title: "Welcome to my Projects"
+description: |
+  Thanks for taking a look at some examples of work I have completed in R. Hope you enjoy it as much as I have! 
+author:
+  - name: Katelin Seeto 
+date: 03-12-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Distill is a publication format for scientific and technical writing, native to the web.
+
+Learn more about using Distill at <https://rstudio.github.io/distill>.
+
+
