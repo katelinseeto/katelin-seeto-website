@@ -5,16 +5,23 @@
       "title": "About Katelin Seeto",
       "description": "More about me",
       "author": [],
-      "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-02-08T16:34:32-08:00"
+      "contents": "\r\nExperience\r\nWhile completing her undergradate education at University of California, Santa Barbara (UCSB), I\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-03-12T17:34:19-08:00"
     },
     {
       "path": "index.html",
       "title": "Katelin Seeto",
       "author": [],
-      "contents": "\r\n\r\n          \r\n          \r\n          Katelin Seeto\r\n          \r\n          \r\n          Home\r\n          About Me\r\n          CV\r\n          ☰\r\n          \r\n          \r\n      \r\n        \r\n          \r\n            Katelin Seeto\r\n          \r\n          \r\n            \r\n              I am a second year M.S student in the Interdepartmental Graduate Program in Marine Science at UCSB.\r\n            \r\n            \r\n              I am a second year M.S student in the Interdepartmental Graduate Program in Marine Science at UCSB.\r\n            \r\n          \r\n\r\n          \r\n            \r\n              \r\n                  \r\n                    \r\n                      ORCID\r\n                    \r\n                  \r\n                \r\n                                \r\n                  \r\n                    \r\n                      GitHub\r\n                    \r\n                  \r\n                \r\n                                \r\n                  \r\n                    \r\n                      Email\r\n                    \r\n                  \r\n                \r\n                              \r\n          \r\n\r\n          \r\n            \r\n              \r\n                                \r\n                  \r\n                    ORCID\r\n                  \r\n                \r\n                                \r\n                  \r\n                    GitHub\r\n                  \r\n                \r\n                                \r\n                  \r\n                    Email\r\n                  \r\n                \r\n                              \r\n            \r\n          \r\n        \r\n      \r\n    \r\n\r\n    \r\n    \r\n    ",
-      "last_modified": "2021-02-08T16:34:32-08:00"
+      "contents": "\r\n\r\n          \r\n          \r\n          Katelin Seeto\r\n          \r\n          \r\n          Home\r\n          About Me\r\n          Projects\r\n          CV\r\n          ☰\r\n          \r\n          \r\n      \r\n        \r\n          \r\n            \r\n              \r\n            \r\n              Katelin Seeto\r\n            \r\n            \r\n              \r\n                \r\n                    \r\n                      \r\n                        ORCID iD\r\n                      \r\n                    \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                        GitHub\r\n                      \r\n                    \r\n                  \r\n                                    \r\n                    \r\n                      \r\n                        Email\r\n                      \r\n                    \r\n                  \r\n                                  \r\n            \r\n          \r\n        \r\n        \r\n        \r\n          \r\n            I am a second year M.S student in the Interdepartmental Graduate Program in Marine Science at UCSB.\r\n          \r\n        \r\n      \r\n    \r\n\r\n    \r\n      \r\n        \r\n          \r\n            \r\n              \r\n            \r\n              Katelin Seeto\r\n            \r\n            \r\n              \r\n                \r\n                                    \r\n                    \r\n                      ORCID iD\r\n                    \r\n                  \r\n                                    \r\n                    \r\n                      GitHub\r\n                    \r\n                  \r\n                                    \r\n                    \r\n                      Email\r\n                    \r\n                  \r\n                                  \r\n              \r\n            \r\n            \r\n              I am a second year M.S student in the Interdepartmental Graduate Program in Marine Science at UCSB.\r\n            \r\n        \r\n      \r\n    \r\n\r\n    \r\n    \r\n    ",
+      "last_modified": "2021-03-12T17:34:20-08:00"
+    },
+    {
+      "path": "project.html",
+      "title": "Projects",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-03-12T17:34:21-08:00"
     }
   ],
-  "collections": []
+  "collections": ["posts/posts.json"]
 }

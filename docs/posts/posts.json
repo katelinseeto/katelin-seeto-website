@@ -1,0 +1,36 @@
+[
+  {
+    "path": "posts/2021-03-12-welcome/",
+    "title": "Welcome to my Projects",
+    "description": "Thanks for taking a look at some examples of work I have completed in R. Hope you enjoy it as much as I have!",
+    "author": [
+      {
+        "name": "Unknown",
+        "url": {}
+      }
+    ],
+    "date": "2021-03-12",
+    "categories": [],
+    "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-03-12T17:32:15-08:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/2021-03-12-gganimate/",
+    "title": "Animated Bar Graph: Plastic Pollution",
+    "description": "Create an animated plot with `gganimate` using Tidy Tuesday data",
+    "author": [
+      {
+        "name": "Katelin Seeto",
+        "url": {}
+      }
+    ],
+    "date": "2021-03-12",
+    "categories": [],
+    "contents": "\r\nRead in plastics data\r\n\r\n\r\ncode\r\n\r\ntuesdata <- tidytuesdayR::tt_load(2021, week = 5)\r\n\r\n\r\n\r\n    Downloading file 1 of 1: `plastics.csv`\r\n\r\ncode\r\n\r\nplastics <- tuesdata$plastics\r\n\r\n\r\n\r\nClean and wrangle\r\n\r\n\r\ncode\r\n\r\n# Wrangling\r\nplastics <- plastics %>% \r\n    clean_names() %>% \r\n  mutate(across(where(is.character), tolower),\r\n         year = as.factor(year)) %>% \r\n  filter(!country == \"empty\")\r\n\r\n# Countries participated in 2019\r\nplastics_2019<-plastics%>%\r\n  filter(year == 2019)%>%\r\n  group_by(country)%>%\r\n  summarize(total_2019 = sum(grand_total))%>%\r\n  na.omit() \r\n  \r\n# Countries participated in 2020\r\nplastics_2020<-plastics%>%\r\n  filter(year == 2020)%>%\r\n  group_by(country)%>%\r\n  summarize(total_2020 = sum(grand_total))%>%\r\n  na.omit() \r\n\r\n# Combine and only keep countries that participated in both years\r\n\r\nplastics_joined <- right_join(plastics_2019, plastics_2020, by = \"country\") %>% \r\n   na.omit()%>% \r\n  pivot_longer(!country, \r\n               names_to = \"year\", \r\n               names_prefix = \"total_\",\r\n               values_to = \"total_plastic\") %>% \r\n  mutate(year = as.factor(year),\r\n         country = toTitleCase(country)) %>% \r\n  group_by(year) %>% \r\n  mutate(rank = as.factor(rank(desc(total_plastic)))) %>% \r\n  filter(rank %in% c(\"1\":\"10\"))\r\n\r\n\r\n\r\ngganimate change in rank by year\r\n\r\n\r\ncode\r\n\r\nnum_colors <- 13 #define number of colors based on countries \r\nmycolors <- colorRampPalette(brewer.pal(8, \"Set3\"))(num_colors)\r\n\r\n\r\ntop_10_yr<- ggplot(plastics_joined)+\r\n  geom_col(aes(x = fct_rev(rank), \r\n               y = total_plastic,\r\n               group = country, \r\n               fill = country))+ \r\n  geom_text(aes(x = rank, y = 0, \r\n                label = country,\r\n                group = country),\r\n            hjust = 1.25, \r\n            size = 4.5)+\r\n  theme_minimal()+\r\n  theme(axis.title.y = element_blank(), \r\n        axis.text.y = element_blank(),\r\n        axis.title.x = element_text(size = 14),\r\n        plot.title = element_text(size = 18, face = \"bold\"),\r\n        plot.subtitle = element_text(size = 14),\r\n        plot.margin = margin(4,1,1,90))+\r\n  labs(y = \"Total count of all plastics\",\r\n       title = '{closest_state}',\r\n       subtitle = \"Top 10 countries by year with highest total plastic count\", \r\n       caption = \"Data Source: Break Free from Plastic courtesy of Sarah Sauve. #breakfreefromplastic\",\r\n       fill = \"Country\")+\r\n  scale_fill_manual(values = mycolors)+\r\n  coord_flip(clip = \"off\")+\r\n  transition_states(year, \r\n                    transition_length = 2, \r\n                    state_length = 2)+\r\n  exit_fly(x_loc = 0, y_loc = 0) +      \r\n  enter_fly(x_loc = 0, y_loc = 0)\r\n\r\ntop_10_yr\r\n\r\n\r\n\r\ncode\r\n\r\n# anim_save(\"task3_anim_plot.gif\", top_10_yr)\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-03-12T17:57:29-08:00",
+    "input_file": "gganimate.utf8.md"
+  }
+]
