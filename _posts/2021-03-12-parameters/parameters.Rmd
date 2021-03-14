@@ -17,8 +17,167 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web.
+```{r}
 
-Learn more about using Distill at <https://rstudio.github.io/distill>.
+# Attach packages 
+library(tidyverse)
+library(here)
+library(janitor)
+library(broom)
+library(nlstools)
+library(gt)
+library(latex2exp)
+
+```
+
+```{r}
+# Read in global wild fish catch data 
+fish <- read_csv(here("_posts", "2021-03-12-parameters", "data", "fish_catch.csv"),
+                 skip = 2,
+                 col_names = TRUE)
+
+# Tidy and clean data 
+fish_clean <- fish %>% 
+  clean_names() %>% 
+  drop_na() %>% 
+  mutate(across(c(year, wild_catch), as.numeric))
+
+# Create df for wild catch with column for time in years, with 1950 = 0
+wild <- fish_clean %>% 
+  mutate(time = seq(from = 0, 
+                    to = (nrow(fish_clean)-1),
+                    by = 1)) %>% 
+  select(time, wild_catch)
+
+# Create exploratory graph of wild fish catch over time 
+ggplot(fish_clean, aes(x = year, y = wild_catch)) +
+  geom_point() +
+  scale_x_continuous(breaks = seq(1950,2012,10)) +
+  scale_y_continuous(breaks = seq(15,100,10)) +
+  labs(title = "Exploratory plot of wild fish catch over time",
+       x = "year",
+       y = "wild catch (million tons)") +
+  theme_light()
+
+# Estimate growth constant during the exponential phase to get an estimate for growth rate constant (k)
+
+# Select only observations occurring during exponential growth phase (time <45 = year <1995), and log transform wild_catch
+wild_exp <- wild %>% 
+  filter(time < 45) %>% 
+  mutate(ln_catch = log(wild_catch))
+
+# Model linear to get estimate of *k*
+lm_k <- lm(ln_catch ~ time, data = wild_exp)
+# lm_k # ~ 0.03
+  
+```
+The data trend can be described by logistic growth equation: 
+$P(t)=\frac{K}{1+Ae^{-kt}}$, where
+
+- $K$ is the carrying capacity
+- $A$ is $\frac{K-P_0}{P_0}$
+- $k$ is the growth rate constant
+
+My initial estimates for the parameters are:    
+
+- $K$ :  ~**90**  
+- $A$ : $\frac{90-17}{17}$ ~**4**  
+- $k$ :  ~**0.03**  
+
+
+```{r echo=FALSE}
+# Find parameters for wild catch model using nonlinear least squares
+
+# Enter model information with list of estimated starting parameter values into `nls()`
+wild_nls <- nls(wild_catch ~K/(1 + A*exp(-k*time)),
+                data = wild, 
+                start = list(K = 90,
+                             A = 4, 
+                             k = 0.03))
+
+# View model summary 
+# summary(wild_nls)
+
+# Get model in tidier format using broom::tidy
+model_out <- broom::tidy(wild_nls)
+
+# Create table of parameter outcomes 
+model_out %>% 
+  select(term, estimate) %>% 
+  gt() %>% 
+  tab_header(title = md("Nonlinear Least-squares Parameter<br/> Estimates for Wild Fish Catch Model")) %>% 
+  tab_options(table.width = pct(50)) %>% 
+  tab_style(style = list(
+    cell_text(align = "center",
+              weight = "bold")),
+    locations = cells_column_labels(columns = vars(term, estimate))) %>%
+  tab_style(style = list(
+    cell_text(align = "center")),
+    locations = cells_body(columns = vars(estimate))) %>%
+  tab_style(style = list(
+    cell_text(style = "italic",
+              align = "center")),
+    locations = cells_body(columns = vars(term))) %>%
+  fmt_number(columns = vars(estimate),
+             decimals = 2) %>% 
+  cols_label(term = "Parameter",
+             estimate = md("Estimate<br/> (catch in million tons)"))
+```
+
+```{r}
+# Make predictions for global wild catch for each year (time) in the original data frame
+p_predict <- predict(wild_nls)
+
+# Bind predictions to original data frame
+wild_complete <- data.frame(wild, p_predict)
+
+# Add column listing years back in for easier plot labeling 
+wild_complete$year <- fish_clean$year
+
+# Plot predictions from model output against original data 
+ggplot(data = wild_complete, aes(x = year, y = wild_catch)) + 
+  geom_point(color = "cadetblue", 
+             size = 2) + 
+  geom_line(aes(x = year, y = p_predict), 
+            color = "orangered",
+            size = 1) +
+  annotate("text",
+           label = "Model Prediction",
+             x = 2020, 
+             y = 97,
+             color = "orangered",
+             size = 3.5) +
+  annotate("text",
+           label = "Catch Data",
+             x = 2020, 
+             y = 91,
+             color = "cadetblue",
+             size = 3.5) +
+  annotate("text", 
+           label = TeX("$P(t) = \\frac{100.28}{1 + 4.32e^{-0.07t}}$"), 
+           size = 4, 
+           color = "orangered",
+           x = 2008, 
+           y = 10) +
+  coord_cartesian(clip = "off") +
+  scale_x_continuous(breaks = seq(1950,2012,10),
+                     expand = c(0,1)) +
+  scale_y_continuous(limits = c(0,100), 
+                     breaks = seq(10,100, 10),
+                     expand = c(0,0)) +
+  labs(x = "Year",
+       y = "Global wild fish catch\n(million tons)") + 
+  theme_bw() +
+  theme(axis.line = element_line(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.border = element_blank(),
+        plot.margin = margin(t= 0.5, r = 4, b = 0.5, l = 0.5, unit = "cm"))
+```
+
+
+### Data source:
+ Global wild fish catch and aquaculture production, compiled by Earth Policy Institute with 1950-2010 from U.N. Food and Agriculture Organization (FAO), Global Capture Production and Global Aquaculture Production, electronic databases, at www.fao.org/fishery/topic/16140/en.
 
 
