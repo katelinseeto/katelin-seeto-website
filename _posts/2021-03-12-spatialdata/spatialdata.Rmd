@@ -1,0 +1,99 @@
+---
+title: "Interactive and Chloropleth Maps: Oil Spills"
+description: |
+  Build an exploratory interactive map of California oil spill events in 2008 and create a chloroplethmap of the number of inland spill events by county. 
+author:
+  - name: Katelin Seeto
+    url: {}
+date: 03-12-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: hide
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+### Attach packages
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+library(tmap)
+library(sf)
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+# Read in oil spill data (https://map.dfg.ca.gov/metadata/ds0394.html)
+spill_data <- read_sf(here("_posts", "2021-03-12-spatialdata", "data", "spill_tracking_ds394")) %>% 
+  clean_names()
+  
+# Read in the CA county data (TIGER shapefile):
+ca_counties <- read_sf(here("_posts", "2021-03-12-spatialdata", "data","ca_counties"), layer = "CA_Counties_TIGER2016") %>% 
+  clean_names() %>% 
+  select(name)
+
+
+
+# Check projections 
+st_crs(spill_data) # NAD83
+st_crs(ca_counties) # WGS84
+
+# Transform ca_counties to match spill_data CRS
+ca_counties <- st_transform(ca_counties, st_crs(spill_data))
+
+# Check transformation
+st_crs(ca_counties) # Now is NAD83
+
+
+
+# Convert latitude and longitude in spill_data to spatial coordinates
+spill_data_sp <- spill_data %>% 
+  drop_na(longitude, latitude) %>% 
+  st_as_sf(coords = c("longitude", "latitude"))
+
+```
+
+## Exploratory interactive map of locations of oil spill events 
+
+```{r message=FALSE, warning=FALSE}
+# Create interactive map showing oil spill locations 
+tmap_mode("view")
+
+tm_shape(ca_counties) +
+  tm_polygons() +
+tm_shape(spill_data_sp) + 
+  tm_dots()
+```
+
+## Static cloropleth map of inland oil spill events by county for 2008
+```{r}
+# Static chloropleth map where fill color for each county depends on spill count
+
+ca_spill_data <- ca_counties %>% 
+  st_join(spill_data) %>% 
+  filter(inlandmari == "Inland")
+
+# Count number of oil spill incidents
+spill_counts <- ca_spill_data %>% 
+  count(name)
+
+# Create static chloropleth map 
+ggplot(data = spill_counts) +
+  geom_sf(aes(fill = n), 
+          color = "white") +
+  scale_fill_gradientn(colors = c("navajowhite", "orange", "orangered")) + 
+  theme_minimal() +
+  labs(x = "Longitude",
+       y = "Latitude", 
+       fill = "Number of spill events")
+```
+
+### Data citation: 
+
+California Department of Fish and Wildlife, Office of Spill Prevention and Response. 2009. Oil Spill Incident Tracking [ds394]. https://gis.data.ca.gov/datasets/CDFW::oil-spill-incident-tracking-ds394?geometry=-147.064%2C30.769%2C-91.780%2C43.020
+
+

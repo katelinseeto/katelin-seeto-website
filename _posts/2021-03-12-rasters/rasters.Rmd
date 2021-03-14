@@ -1,0 +1,116 @@
+---
+title: "Working with Raster Data: Cetacean Species Richness"
+description: |
+  Build a raster of cetacean species richness in the California Bight. Map the raster data in a static map. 
+author:
+  - name: Katelin Seeto
+    url: {}
+date: 03-12-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: hide
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+
+library(raster) 
+library(tidyverse)
+library(here)
+library(sf)
+library(fasterize)
+library(rnaturalearth)
+library(rnaturalearthdata)
+
+```
+
+```{r}
+# Read in cetacean raster data
+
+my_files <- list.files(path = here("_posts", "2021-03-12-rasters", "data", "ca_cetaceans"),
+                       full.names = TRUE, 
+                       pattern = "\\.tif$")
+
+cet_stack <- raster::stack(my_files)
+
+
+# View data
+# plot(cet_stack)
+
+```
+
+```{r}
+# Create raster of species richness of cetacean species in CA Bight
+
+# Reclassify probability layer for each species: 
+# Probability threshold of 0.6 of higher = present, or lower than 0.6 = not present
+
+# Function to determine if cetacean species is present
+present <- function(x, thresh = 0.6) {
+y <- ifelse(x >= thresh, 1, 0) #1 = present, 0 = not present
+return(y)
+}
+
+# Apply function to raster to determine cetacean species presence 
+cet_present <- calc(cet_stack, fun = present)
+
+# Sum the rasters to find species richness 
+cet_richness <- calc(cet_present, fun = sum, na.rm = TRUE)
+
+# Convert richness raster into dataframe for plotting
+cet_richness_df <- raster::rasterToPoints(cet_richness) %>% 
+  as.data.frame()
+
+```
+
+```{r message=FALSE, include=FALSE}
+# Get shapefile for CA coastline for reference
+
+california <- ne_download(type = "states",
+                          scale = 50,
+                          category = "cultural",
+                          returnclass = "sf") %>% 
+  filter(name == "California")
+```
+## Map of cetacean species richness in the California Bight
+
+```{r, fig.cap = "**Fig 1** Map of species richness for cetacean species (n = 35) in the California Bight. Probability of occurence was based on species preferences for water temperature, depth, salinity, and distance to land. Species were considered present if probability of occurence was 0.6 or higher. **Data source:** AquaMaps, 2016"}
+
+# Create static map of species richness 
+
+ggplot() + 
+  geom_raster(data = cet_richness_df,
+              aes(x = x, y = y, fill = layer)) + 
+  scale_fill_continuous(type = "viridis",
+                        limits = c(0,30),
+                        guide = guide_colorbar(title.position = "top",
+                                               title.hjust = 0.5,
+                                               title.vjust = 0.1)) +
+  geom_sf(data = california, 
+          fill = "grey13",
+          color = "grey13") + 
+  coord_sf(xlim = c(-125, -115),
+           ylim = c(32, 38),
+           expand = FALSE) + 
+  labs(x = "Longitude", 
+       y = "Latitude", 
+       fill = "Number of Species") + 
+  theme(legend.position = c(0.85,0.87), 
+        legend.direction = "horizontal") 
+  
+
+```
+
+
+### Citations: 
+
+Kaschner, K., K. Kesner-Reyes, C. Garilao, J. Rius-Barile, T. Rees, and R. Froese. 2019. AquaMaps: Predicted range maps for aquatic species. World wide web electronic publication, www.aquamaps.org, version 10/2019.
+
+
+
+
