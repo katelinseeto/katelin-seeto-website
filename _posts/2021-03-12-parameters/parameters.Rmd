@@ -1,7 +1,7 @@
 ---
-title: "Finding an equation with Parameters"
+title: "Parameter Estimation with Non Linear Least Squares: Global Fish Catch"
 description: |
-  A short description of the post.
+  Find an equation with parameters estimated by nonlinear least squares for the increase in global wild fish catch from 1950 – 2012
 author:
   - name: Katelin Seeto
     url: {}

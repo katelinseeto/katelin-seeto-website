@@ -85,9 +85,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Finding an equation with Parameters</title>
+  <title>Parameter Estimation with Non Linear Least Squares: Global Fish Catch</title>
 
-  <meta property="description" itemprop="description" content="A short description of the post."/>
+  <meta property="description" itemprop="description" content="Find an equation with parameters estimated by nonlinear least squares for the increase in global wild fish catch from 1950 – 2012"/>
 
 
   <!--  https://schema.org/Article -->
@@ -96,21 +96,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta name="article:author" content="Katelin Seeto"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Finding an equation with Parameters"/>
+  <meta property="og:title" content="Parameter Estimation with Non Linear Least Squares: Global Fish Catch"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="A short description of the post."/>
+  <meta property="og:description" content="Find an equation with parameters estimated by nonlinear least squares for the increase in global wild fish catch from 1950 – 2012"/>
   <meta property="og:locale" content="en_US"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Finding an equation with Parameters"/>
-  <meta property="twitter:description" content="A short description of the post."/>
+  <meta property="twitter:title" content="Parameter Estimation with Non Linear Least Squares: Global Fish Catch"/>
+  <meta property="twitter:description" content="Find an equation with parameters estimated by nonlinear least squares for the increase in global wild fish catch from 1950 – 2012"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Finding an equation with Parameters"]},{"type":"character","attributes":{},"value":["A short description of the post.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Katelin Seeto"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["03-12-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["hide"]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Parameter Estimation with Non Linear Least Squares: Global Fish Catch"]},{"type":"character","attributes":{},"value":["Find an equation with parameters estimated by nonlinear least squares for the increase in global wild fish catch from 1950 – 2012\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Katelin Seeto"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["03-12-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["hide"]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1454,7 +1454,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Finding an equation with Parameters","description":"A short description of the post.","authors":[{"author":"Katelin Seeto","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-03-12T00:00:00.000-08:00","citationText":"Seeto, 2021"}
+{"title":"Parameter Estimation with Non Linear Least Squares: Global Fish Catch","description":"Find an equation with parameters estimated by nonlinear least squares for the increase in global wild fish catch from 1950 – 2012","authors":[{"author":"Katelin Seeto","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-03-12T00:00:00.000-08:00","citationText":"Seeto, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1464,10 +1464,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Finding an equation with Parameters</h1>
+<h1>Parameter Estimation with Non Linear Least Squares: Global Fish Catch</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>A short description of the post.</p></p>
+<p><p>Find an equation with parameters estimated by nonlinear least squares for the increase in global wild fish catch from 1950 – 2012</p></p>
 </div>
 
 <div class="d-byline">
@@ -1485,11 +1485,11 @@ hide
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Attach packages </span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://here.r-lib.org/'>here</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/sfirke/janitor'>janitor</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://here.r-lib.org/'>here</a></span><span class='op'>)</span> <span class='co'>#  enable easy file referencing</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/sfirke/janitor'>janitor</a></span><span class='op'>)</span> <span class='co'># for examining and cleaning dirty data</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://broom.tidymodels.org/'>broom</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>nlstools</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/rstudio/gt'>gt</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/rstudio/gt'>gt</a></span><span class='op'>)</span> <span class='co'># Build display tables from tabular data </span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://github.com/stefano-meschiari/latex2exp'>latex2exp</a></span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -1614,7 +1614,7 @@ hide
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#umjghqegwk .gt_table {
+#ohnqcysnfh .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1639,7 +1639,7 @@ hide
   border-left-color: #D3D3D3;
 }
 
-#umjghqegwk .gt_heading {
+#ohnqcysnfh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1651,7 +1651,7 @@ hide
   border-right-color: #D3D3D3;
 }
 
-#umjghqegwk .gt_title {
+#ohnqcysnfh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1661,7 +1661,7 @@ hide
   border-bottom-width: 0;
 }
 
-#umjghqegwk .gt_subtitle {
+#ohnqcysnfh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1671,13 +1671,13 @@ hide
   border-top-width: 0;
 }
 
-#umjghqegwk .gt_bottom_border {
+#ohnqcysnfh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#umjghqegwk .gt_col_headings {
+#ohnqcysnfh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1692,7 +1692,7 @@ hide
   border-right-color: #D3D3D3;
 }
 
-#umjghqegwk .gt_col_heading {
+#ohnqcysnfh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1712,7 +1712,7 @@ hide
   overflow-x: hidden;
 }
 
-#umjghqegwk .gt_column_spanner_outer {
+#ohnqcysnfh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1724,15 +1724,15 @@ hide
   padding-right: 4px;
 }
 
-#umjghqegwk .gt_column_spanner_outer:first-child {
+#ohnqcysnfh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#umjghqegwk .gt_column_spanner_outer:last-child {
+#ohnqcysnfh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#umjghqegwk .gt_column_spanner {
+#ohnqcysnfh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1744,7 +1744,7 @@ hide
   width: 100%;
 }
 
-#umjghqegwk .gt_group_heading {
+#ohnqcysnfh .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1766,7 +1766,7 @@ hide
   vertical-align: middle;
 }
 
-#umjghqegwk .gt_empty_group_heading {
+#ohnqcysnfh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1781,15 +1781,15 @@ hide
   vertical-align: middle;
 }
 
-#umjghqegwk .gt_from_md > :first-child {
+#ohnqcysnfh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#umjghqegwk .gt_from_md > :last-child {
+#ohnqcysnfh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#umjghqegwk .gt_row {
+#ohnqcysnfh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1808,7 +1808,7 @@ hide
   overflow-x: hidden;
 }
 
-#umjghqegwk .gt_stub {
+#ohnqcysnfh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1820,7 +1820,7 @@ hide
   padding-left: 12px;
 }
 
-#umjghqegwk .gt_summary_row {
+#ohnqcysnfh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1830,7 +1830,7 @@ hide
   padding-right: 5px;
 }
 
-#umjghqegwk .gt_first_summary_row {
+#ohnqcysnfh .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1840,7 +1840,7 @@ hide
   border-top-color: #D3D3D3;
 }
 
-#umjghqegwk .gt_grand_summary_row {
+#ohnqcysnfh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1850,7 +1850,7 @@ hide
   padding-right: 5px;
 }
 
-#umjghqegwk .gt_first_grand_summary_row {
+#ohnqcysnfh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1860,11 +1860,11 @@ hide
   border-top-color: #D3D3D3;
 }
 
-#umjghqegwk .gt_striped {
+#ohnqcysnfh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#umjghqegwk .gt_table_body {
+#ohnqcysnfh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1873,7 +1873,7 @@ hide
   border-bottom-color: #D3D3D3;
 }
 
-#umjghqegwk .gt_footnotes {
+#ohnqcysnfh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1887,13 +1887,13 @@ hide
   border-right-color: #D3D3D3;
 }
 
-#umjghqegwk .gt_footnote {
+#ohnqcysnfh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#umjghqegwk .gt_sourcenotes {
+#ohnqcysnfh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1907,46 +1907,46 @@ hide
   border-right-color: #D3D3D3;
 }
 
-#umjghqegwk .gt_sourcenote {
+#ohnqcysnfh .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#umjghqegwk .gt_left {
+#ohnqcysnfh .gt_left {
   text-align: left;
 }
 
-#umjghqegwk .gt_center {
+#ohnqcysnfh .gt_center {
   text-align: center;
 }
 
-#umjghqegwk .gt_right {
+#ohnqcysnfh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#umjghqegwk .gt_font_normal {
+#ohnqcysnfh .gt_font_normal {
   font-weight: normal;
 }
 
-#umjghqegwk .gt_font_bold {
+#ohnqcysnfh .gt_font_bold {
   font-weight: bold;
 }
 
-#umjghqegwk .gt_font_italic {
+#ohnqcysnfh .gt_font_italic {
   font-style: italic;
 }
 
-#umjghqegwk .gt_super {
+#ohnqcysnfh .gt_super {
   font-size: 65%;
 }
 
-#umjghqegwk .gt_footnote_marks {
+#ohnqcysnfh .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="umjghqegwk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="ohnqcysnfh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="2" class="gt_heading gt_title gt_font_normal" style>Nonlinear Least-squares Parameter<br/> Estimates for Wild Fish Catch Model</th>
