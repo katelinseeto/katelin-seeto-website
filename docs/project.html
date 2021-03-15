@@ -2119,32 +2119,35 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   /* Optional: embed custom fonts here with `@import`          */
   /* This must remain at the top of this file.                 */
 
+  @import url('https://fonts.googleapis.com/css2?family=Blinker&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Blinker&family=Roboto:wght@300&display=swap');
+
 
 
   html {
     /*-- Main font sizes --*/
-    --title-size:      50px;
+    --title-size:      40px;   /*edited*/
     --body-size:       1.06rem;
     --code-size:       14px;
     --aside-size:      12px;
-    --fig-cap-size:    13px;
+    --fig-cap-size:    14px;
     /*-- Main font colors --*/
-    --title-color:     #000000;
-    --header-color:    rgba(0, 0, 0, 0.8);
+    --title-color:     #284C48;  /*edited*/
+    --header-color:    rgba(40, 76, 72, 0.8);  /*edited*/
     --body-color:      rgba(0, 0, 0, 0.8);
     --aside-color:     rgba(0, 0, 0, 0.6);
     --fig-cap-color:   rgba(0, 0, 0, 0.6);
     /*-- Specify custom fonts ~~~ must be imported above   --*/
-    --heading-font:    sans-serif;
-    --mono-font:       monospace;
-    --body-font:       sans-serif;
-    --navbar-font:     sans-serif;  /* websites + blogs only */
+    --heading-font:    "Blinker", sans-serif;  /*edited*/
+    --mono-font:       "Roboto", sans-serif;  /*edited*/
+    --body-font:       "Roboto", sans-serif;   /*edited*/
+    --navbar-font:     "Blinker", sans-serif ;  /* websites + blogs only */  /*edited*/
   }
 
   /*-- ARTICLE METADATA --*/
   d-byline {
     --heading-size:    0.6rem;
-    --heading-color:   rgba(0, 0, 0, 0.5);
+    --heading-color:   rgba(40, 76, 72, 0.5);  /*edited*/
     --body-size:       0.8rem;
     --body-color:      rgba(0, 0, 0, 0.8);
   }
@@ -2158,7 +2161,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   /*-- ARTICLE APPENDIX --*/
   d-appendix {
     --heading-size:    15px;
-    --heading-color:   rgba(0, 0, 0, 0.65);
+    --heading-color:   rgba(40, 76, 72, 0.65);  /*edited*/
     --text-size:       0.8em;
     --text-color:      rgba(0, 0, 0, 0.5);
   }
@@ -2167,11 +2170,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   /* These properties only apply to Distill sites and blogs  */
 
   .distill-site-header {
-    --title-size:       18px;
+    --title-size:       22px;  /*edited*/
     --text-color:       rgba(255, 255, 255, 0.8);
     --text-size:        15px;
     --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
+    --bkgd-color:       #407A73;  /*edited*/
   }
 
   .distill-site-footer {
@@ -2517,6 +2520,23 @@ function init_posts_list() {
 <div class="posts-container posts-apply-limit l-page">
 <div class="posts-list">
 <h1 class="posts-list-caption" data-caption="Projects">Projects</h1>
+<a href="posts/2021-03-12-binarylogisticregression/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":[]}</script>
+<div class="metadata">
+<div class="publishedDate">March 12, 2021</div>
+<div class="dt-authors">
+<div class="dt-author">Katelin Seeto</div>
+</div>
+</div>
+<div class="thumbnail">
+<img src="posts/2021-03-12-binarylogisticregression/binarylogisticregression_files/figure-html5/unnamed-chunk-4-1.png"/>
+</div>
+<div class="description">
+<h2>Binary Logistic Regression: Florida Palmetto </h2>
+<div class="dt-tags"></div>
+<p>Use `ggpairs` to explore multivariate relationships for Florida palmetto species and use binary logistic regression to test the feasability of using different variables to determine if a palmetto is a certain species.</p>
+</div>
+</a>
 <a href="posts/2021-03-12-gganimate/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":[]}</script>
 <div class="metadata">
@@ -2534,24 +2554,7 @@ function init_posts_list() {
 <p>Create an animated plot with `gganimate` using Tidy Tuesday data</p>
 </div>
 </a>
-<a href="posts/2021-03-12-welcome/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">March 12, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Unknown</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Welcome to my Projects</h2>
-<div class="dt-tags"></div>
-<p>Thanks for taking a look at some examples of work I have completed in R. Hope you enjoy it as much as I have!</p>
-</div>
-</a>
-<a href="posts/2021-03-12-spatialdata/" class="post-preview">
+<a href="posts/2021-03-12-parameters/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":[]}</script>
 <div class="metadata">
 <div class="publishedDate">March 12, 2021</div>
@@ -2560,29 +2563,12 @@ function init_posts_list() {
 </div>
 </div>
 <div class="thumbnail">
-<img src="posts/2021-03-12-spatialdata/spatialdata_files/figure-html5/unnamed-chunk-4-1.png"/>
+<img src="posts/2021-03-12-parameters/parameters_files/figure-html5/unnamed-chunk-2-1.png"/>
 </div>
 <div class="description">
-<h2>Interactive and Chloropleth Maps: Oil Spills</h2>
+<h2>Finding an equation with Parameters</h2>
 <div class="dt-tags"></div>
-<p>Build an exploratory interactive map of California oil spill events in 2008 and create a chloroplethmap of the number of inland spill events by county.</p>
-</div>
-</a>
-<a href="posts/2021-03-12-binarylogisticregression/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">March 12, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Katelin Seeto</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-03-12-binarylogisticregression/binarylogisticregression_files/figure-html5/unnamed-chunk-4-1.png"/>
-</div>
-<div class="description">
-<h2>Binary Logistic Regression: Florida Palmetto </h2>
-<div class="dt-tags"></div>
-<p>Use `ggpairs` to explore multivariate relationships for Florida palmetto species and use binary logistic regression to test the feasability of using different variables to determine if a palmetto is a certain species.</p>
+<p>A short description of the post.</p>
 </div>
 </a>
 <a href="posts/2021-03-12-rasters/" class="post-preview">
@@ -2602,7 +2588,7 @@ function init_posts_list() {
 <p>Build a raster of cetacean species richness in the California Bight. Map the raster data in a static map.</p>
 </div>
 </a>
-<a href="posts/2021-03-12-parameters/" class="post-preview">
+<a href="posts/2021-03-12-spatialdata/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":[]}</script>
 <div class="metadata">
 <div class="publishedDate">March 12, 2021</div>
@@ -2611,12 +2597,29 @@ function init_posts_list() {
 </div>
 </div>
 <div class="thumbnail">
-<img data-src="posts/2021-03-12-parameters/parameters_files/figure-html5/unnamed-chunk-2-1.png"/>
+<img src="posts/2021-03-12-spatialdata/spatialdata_files/figure-html5/unnamed-chunk-4-1.png"/>
 </div>
 <div class="description">
-<h2>Finding an equation with Parameters</h2>
+<h2>Interactive and Chloropleth Maps: Oil Spills</h2>
 <div class="dt-tags"></div>
-<p>A short description of the post.</p>
+<p>Build an exploratory interactive map of California oil spill events in 2008 and create a chloroplethmap of the number of inland spill events by county.</p>
+</div>
+</a>
+<a href="posts/2021-03-12-welcome/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":[]}</script>
+<div class="metadata">
+<div class="publishedDate">March 12, 2021</div>
+<div class="dt-authors">
+<div class="dt-author">Unknown</div>
+</div>
+</div>
+<div class="thumbnail">
+<img/>
+</div>
+<div class="description">
+<h2>Welcome to my Projects</h2>
+<div class="dt-tags"></div>
+<p>Thanks for taking a look at some examples of work I have completed in R. Hope you enjoy it as much as I have!</p>
 </div>
 </a>
 </div>
@@ -2624,7 +2627,7 @@ function init_posts_list() {
 <a href="#">More articles &raquo;</a>
 </div>
 </div>
-<!--/radix_placeholder_article_listing-->
+<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
 <h1>Projects</h1>

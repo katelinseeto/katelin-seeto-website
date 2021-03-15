@@ -21,10 +21,10 @@ knitr::opts_chunk$set(echo = FALSE)
 
 library(raster) 
 library(tidyverse)
-library(here)
-library(sf)
+library(here) #  enable easy file referencing
+library(sf) # working with geospatial vectors
 library(fasterize)
-library(rnaturalearth)
+library(rnaturalearth) #  hold and facilitate interaction with Natural Earth map data
 library(rnaturalearthdata)
 
 ```

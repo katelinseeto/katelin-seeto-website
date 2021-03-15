@@ -19,10 +19,10 @@ knitr::opts_chunk$set(echo = FALSE)
 ### Attach packages
 ```{r}
 library(tidyverse)
-library(here)
-library(janitor)
-library(tmap)
-library(sf)
+library(here) #  enable easy file referencing
+library(janitor) # for examining and cleaning dirty data
+library(tmap) # thematic maps
+library(sf) # working with geospatial vectors
 ```
 
 

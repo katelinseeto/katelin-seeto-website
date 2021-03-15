@@ -21,11 +21,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Attach packages 
 library(tidyverse)
-library(here)
-library(janitor)
+library(here) #  enable easy file referencing
+library(janitor) # for examining and cleaning dirty data
 library(broom)
 library(nlstools)
-library(gt)
+library(gt) # Build display tables from tabular data 
 library(latex2exp)
 
 ```

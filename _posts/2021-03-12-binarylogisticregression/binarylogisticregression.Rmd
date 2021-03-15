@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{r}
 
 library(tidyverse)
-library(here)
+library(here) #  enable easy file referencing
 library(GGally) 
 library(broom) 
 library(jtools)

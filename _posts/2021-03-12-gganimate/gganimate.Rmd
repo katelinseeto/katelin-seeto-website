@@ -18,10 +18,10 @@ knitr::opts_chunk$set(echo = FALSE)
 
 library(tidytuesdayR) 
 library(tidyverse)
-library(janitor)
+library(janitor) #  for examining and cleaning dirty data
 library(ggplot2)
 library(RColorBrewer)
-library(gganimate)
+library(gganimate) # extension of the ggplot2 package for creating animated ggplots
 library(gifski)
 library(tools)
 library(forcats)
