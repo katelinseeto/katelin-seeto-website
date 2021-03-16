@@ -14,4 +14,4 @@ output:
 site: distill::distill_website
 ---
  
-I am a second year M.S student in the Interdepartmental Graduate Program in Marine Science at UCSB.  
+I am a second year M.S student in the Interdepartmental Graduate Program in Marine Science at UCSB. 
